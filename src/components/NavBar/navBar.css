@@ -1,0 +1,33 @@
+.navbar-img {
+  height: 5vw;
+  max-height: 70px;
+}
+
+.nav-title {
+  color: var(--text400);
+  font-weight: bold;
+}
+
+.nav-link {
+  color: var(--text400);
+  display: block;
+}
+
+.nav-link:hover {
+  color: var(--text300);
+  text-decoration: underline;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 992px) {
+  .navbar-img {
+    height: 18vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .nav-gap {
+    gap: 30px;
+  }
+}
