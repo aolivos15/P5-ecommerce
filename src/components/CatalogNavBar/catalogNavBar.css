@@ -1,0 +1,26 @@
+.cat-nav-title {
+  color: var(--text400);
+  font-weight: bold;
+}
+
+.cat-nav-bg {
+  background-color: var(--first300);
+}
+
+.cat-nav-link {
+  color: var(--text400);
+  display: block;
+}
+
+.cat-nav-link:hover {
+  color: var(--text300);
+  text-decoration: underline;
+}
+
+/* MEDIA QUERIES */
+
+@media (min-width: 992px) {
+  .cat-nav-gap {
+    gap: 30px;
+  }
+}

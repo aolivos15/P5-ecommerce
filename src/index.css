@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Lily+Script+One&family=Signika+Negative&display=swap');
 
 :root {
+  --first300: #d5c8e7;
   --first400: #bfabdb;
   --first500: #a88dd1;
   --second200: #fffbf1;
