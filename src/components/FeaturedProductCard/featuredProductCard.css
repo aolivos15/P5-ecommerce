@@ -1,13 +1,13 @@
 .product-card {
   margin-bottom: 30px;
   border-radius: 20px;
-  background-color: var(--third300);
-  border: none;
   max-width: 80%;
+  background-color: var(--second200);
+  padding: 20px;
   margin: auto;
 }
 
-.card-img {
+.product-card-img {
   border-radius: 20px;
 }
 
