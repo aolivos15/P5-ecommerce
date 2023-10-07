@@ -1,8 +1,13 @@
+import { FeaturedProducts } from "../components/FeaturedProducts/FeaturedProducts"
+import { Footer } from "../components/Footer/Footer"
+import { Jumbotron } from "../components/Jumbotron/Jumbotron"
 
 export const HomePage = () => {
   return (
     <>
-      <h1 className="resp-title text-center p-5">Home Page</h1>
+      <Jumbotron />
+      <FeaturedProducts />
+      <Footer />
     </>
   )
 }

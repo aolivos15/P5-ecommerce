@@ -1,0 +1,30 @@
+.jumbotron-img {
+  border-radius: 60px;
+  border-top-right-radius: 0%;
+  border-bottom-right-radius: 0%;
+}
+
+.jumbotron-btn {
+  background-color: var(--first400);
+  border: 4px solid var(--first400);
+  border-radius: 30px;
+  color: var(--text400);
+  font-size: 24px;
+  padding: 10px 40px;
+}
+
+.jumbotron-btn:hover {
+  border: 4px dashed var(--text400);
+}
+
+.jumbotron-link {
+  color: var(--text400);
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 1200px) {
+  .jumbotron-btn {
+    font-size: 18px;
+  }
+}

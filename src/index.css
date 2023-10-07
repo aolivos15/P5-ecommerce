@@ -5,6 +5,7 @@
   --first500: #a88dd1;
   --second300: #fdf4de;
   --second400: #F6E6C2;
+  --third300: #cfebf1;
   --third400: #a5dce9;
   --third500: #66cae0;
   --text300: #866e58;
@@ -31,7 +32,7 @@ div {
 }
 
 .bg-third {
-  background-color: var(--third400);
+  background-color: var(--third300);
 }
 
 .bg-pattern {
@@ -48,13 +49,14 @@ div {
 
 /* RESPONSIVE FONT SIZES */
 .resp-title {
-  font-size: 34px;
+  font-size: 40px;
   font-weight: bold;
   font-family: 'Chelsea Market', cursive;
+  margin-bottom: 80px;
 }
 
 .resp-p {
-  font-size: 20px;
+  font-size: 26px;
 }
 
 /* MEDIA QUERIES */
