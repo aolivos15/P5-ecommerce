@@ -42,8 +42,16 @@ div {
   background-image: url("../src/assets/img/worn_dots.png");
 }
 
-.rounded-custom {
-  border-radius: 60px;
+.custom-btn {
+  background-color: var(--third400);
+  border: var(--third400) solid 4px;
+  color: var(--text400);
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.custom-btn:hover {
+  border: var(--text300) dashed 4px;
 }
 
 .dash-border {
