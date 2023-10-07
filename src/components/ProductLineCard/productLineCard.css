@@ -1,0 +1,30 @@
+.product-line-card {
+  margin-bottom: 30px;
+  border-radius: 20px;
+  background-color: var(--third200);
+  border: none;
+  max-width: 80%;
+  margin: auto;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.line-card-img {
+  max-width: 100px;
+  padding: 10px 0px;
+}
+
+.line-card-title {
+  text-align: center;
+  color: var(--text400);
+  margin-top: 10px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.line-card-title:hover {
+  color: var(--first500);
+}
