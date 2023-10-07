@@ -5,6 +5,8 @@
   background-color: var(--second200);
   padding: 20px;
   margin: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card-img {
