@@ -1,0 +1,8 @@
+
+export const CategoryProductCard = () => {
+  return (
+    <>
+      
+    </>
+  )
+}

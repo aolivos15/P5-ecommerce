@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import './productLineCard.css';
+import './yarnLineCard.css';
 
-export const ProductLineCard = ( { img, name, link } ) => {
+export const YarnLineCard = ( { img, name, link } ) => {
   return (
     <>
       <div className='col d-flex'>

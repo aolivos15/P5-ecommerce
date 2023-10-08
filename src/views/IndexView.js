@@ -1,3 +1,3 @@
 export * from './HomePage';
-export * from './ProductLinePage';
+export * from './CategoryPage';
 export * from './NotFoundPage';
