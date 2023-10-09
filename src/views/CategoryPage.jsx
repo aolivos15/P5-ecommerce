@@ -2,11 +2,11 @@ import { useParams } from "react-router-dom"
 import { CategoryContainer } from "../components/CategoryContainer/CategoryContainer";
 
 export const CategoryPage = () => {
-  const { title } = useParams();
+  const { category } = useParams();
 
   return (
     <>
-      <CategoryContainer title={title} />
+      <CategoryContainer category={category} />
     </>
   )
 }

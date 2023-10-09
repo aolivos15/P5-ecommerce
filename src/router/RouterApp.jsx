@@ -12,7 +12,7 @@ export const RouterApp = () => {
       <CatalogNavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="categoria/:title" element={<CategoryPage />} />
+        <Route path="categoria/:category" element={<CategoryPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
