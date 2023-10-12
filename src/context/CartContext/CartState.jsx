@@ -63,8 +63,14 @@ export const CartState = ({ children }) => {
     return total;
   }
 
+  // Function to get the total number of items in the cart
+  const getNumberOfItemsInCart = () => {
+    const total = cart.reduce((total, currentItem) => total + currentItem.quantity, 0);
+    return total;
+  }
 
-  // Persist cart in local storage every time its contents change
+
+  // Store cart in local storage every time its contents change
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -86,7 +92,8 @@ export const CartState = ({ children }) => {
         addToCart,
         removeFromCart,
         clearCart,
-        getCartTotal
+        getCartTotal,
+        getNumberOfItemsInCart
       }}
     >
       {children}
