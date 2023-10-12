@@ -37,8 +37,8 @@ export const CartList = () => {
                     <tr key={product._id}>
                       <td>
                         <div className="cart-tablecell-container">
-                          <img className="cart-img me-3" src={product.image} alt={product.title} />
-                          <span>{product.title}</span>
+                          <img className="cart-img" src={product.image} alt={product.title} />
+                          <span className="cart-text">{product.title}</span>
                         </div>
                       </td>
                       <td className="align-middle cart-text">{`${formatPrice.format(product.price)}`}</td>

@@ -4,6 +4,7 @@
 
 .cart-img {
   max-width: 100px;
+  margin-right: 20px;
 }
 
 .cart-quantity-btn {
@@ -29,6 +30,10 @@
 @media (max-width: 768px) {
   .cart-tablecell-container {
     flex-direction: column;
+  }
+
+  .cart-img {
+    margin: 0;
   }
 
   .cart-text {
