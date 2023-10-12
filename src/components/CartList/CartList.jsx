@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react"
 import CartContext from '../../context/CartContext/CartContext';
-import { PayPalButton } from "../PayPal/PayPalButton";
 import './cartList.css'
 
 export const CartList = () => {
@@ -8,6 +7,12 @@ export const CartList = () => {
   const cartCtx = useContext(CartContext);
   const { cart, addToCart, removeFromCart, clearCart, getCartTotal } = cartCtx;
   const [ total, setTotal ] = useState(0);
+
+  // To display prices in CLP format
+  const formatPrice = Intl.NumberFormat("es-CL", {
+    style: "currency",
+    currency: "CLP"
+  })
 
   useEffect(() => {
     setTotal(getCartTotal());
@@ -18,9 +23,9 @@ export const CartList = () => {
       <div className="container d-flex">
         <div className="row w-100">
           <div className="col">
-            <table className="table table-warning table-striped table-hover product-table">
+            <table className="table table-warning table-striped table-hover fs-5">
               <thead>
-                <tr>
+                <tr className="cart-text">
                   <th>Producto</th>
                   <th>Precio</th>
                   <th>Cantidad</th>
@@ -30,18 +35,29 @@ export const CartList = () => {
                 {
                   cart.map((product) => (
                     <tr key={product._id}>
-                      <td><img className="cart-img me-3" src={product.image} alt={product.title} />{product.title}</td>
-                      <td className="align-middle">{`$${product.price}`}</td>
+                      <td>
+                        <div className="cart-tablecell-container">
+                          <img className="cart-img me-3" src={product.image} alt={product.title} />
+                          <span>{product.title}</span>
+                        </div>
+                      </td>
+                      <td className="align-middle cart-text">{`${formatPrice.format(product.price)}`}</td>
                       <td className="align-middle">
-                        <button
-                          className="btn btn-info me-3"
-                          onClick={() => {removeFromCart(product)}}
-                        >-</button>
-                        {product.quantity}
-                        <button
-                          className="btn btn-info ms-3"
-                          onClick={() => {addToCart(product)}}
-                        >+</button>
+                        <div className="cart-tablecell-container">
+                          <button
+                            className="cart-quantity-btn"
+                            onClick={() => { removeFromCart(product) }}
+                          >
+                            <i className="fa-solid fa-minus fs-5"></i>
+                          </button>
+                          <span className="my-2 mx-3">{product.quantity}</span>
+                          <button
+                            className="cart-quantity-btn"
+                            onClick={() => { addToCart(product) }}
+                          >
+                            <i className="fa-solid fa-plus fs-5"></i>
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))
@@ -54,21 +70,12 @@ export const CartList = () => {
       <div className="container">
         {
           cart.length > 0 ? (
-            <h3 className="fw-bold mt-3 mb-5">Precio total: ${total}</h3>
+            <h3 className="text-center fw-bold mt-3 mb-5">Subtotal: {formatPrice.format(total)}</h3>
           ) : (
-            <h3 className="text-center py-5">Tu carrito está vacío :( <br></br>{`Total: ${total}`}</h3>
+            <h3 className="text-center py-5">Tu carrito está vacío :(</h3>
           )
         }
       </div>
-
-      <div className="container d-flex justify-content-center">
-        <div className="row">
-          <div className="col">
-            <PayPalButton invoice={'compra'} totalValue={total} />
-          </div>
-        </div>
-      </div>
-
     </>
   )
 }

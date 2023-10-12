@@ -1,3 +1,37 @@
+.cart-text {
+  color: var(--text400);
+}
+
 .cart-img {
   max-width: 100px;
+}
+
+.cart-quantity-btn {
+  background-color: var(--third400);
+  border: none;
+  color: var(--text400);
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 24px;
+  padding: 4px;
+  width: 40px;
+}
+
+.cart-quantity-btn:hover {
+  background-color: var(--third500);
+}
+
+.cart-tablecell-container {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .cart-tablecell-container {
+    flex-direction: column;
+  }
+
+  .cart-text {
+    text-align: center;
+  }
 }
