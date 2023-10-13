@@ -5,14 +5,8 @@ import './cartList.css'
 export const CartList = () => {
 
   const cartCtx = useContext(CartContext);
-  const { cart, addToCart, removeFromCart, clearCart, getCartTotal } = cartCtx;
+  const { cart, addToCart, removeFromCart, clearCart, getCartTotal, formatPrice } = cartCtx;
   const [ total, setTotal ] = useState(0);
-
-  // To display prices in CLP format
-  const formatPrice = Intl.NumberFormat("es-CL", {
-    style: "currency",
-    currency: "CLP"
-  })
 
   useEffect(() => {
     setTotal(getCartTotal());
@@ -41,7 +35,7 @@ export const CartList = () => {
                           <span className="cart-text">{product.title}</span>
                         </div>
                       </td>
-                      <td className="align-middle cart-text">{`${formatPrice.format(product.price)}`}</td>
+                      <td className="align-middle cart-text">{formatPrice.format(product.price)}</td>
                       <td className="align-middle">
                         <div className="cart-tablecell-container">
                           <button

@@ -69,6 +69,12 @@ export const CartState = ({ children }) => {
     return total;
   }
 
+  // To display prices in CLP format
+  const formatPrice = Intl.NumberFormat("es-CL", {
+    style: "currency",
+    currency: "CLP"
+  })
+
 
   // Store cart in local storage every time its contents change
   useEffect(() => {
@@ -93,7 +99,8 @@ export const CartState = ({ children }) => {
         removeFromCart,
         clearCart,
         getCartTotal,
-        getNumberOfItemsInCart
+        getNumberOfItemsInCart,
+        formatPrice
       }}
     >
       {children}
