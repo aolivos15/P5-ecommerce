@@ -1,0 +1,9 @@
+.signup-form-container {
+  width: 50%;
+}
+
+@media (max-width: 992px) {
+  .signup-form-container {
+    width: 100%;
+  }
+}
