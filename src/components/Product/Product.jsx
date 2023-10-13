@@ -51,8 +51,23 @@ export const Product = ({ product }) => {
 
   // Take cart and addToCart function from cart context
   const cartCtx = useContext(CartContext);
-  const { cart, addToCart } = cartCtx;
+  const { addToCart } = cartCtx;
 
+  const [ selectedVariant, setSelectedVariant ] = useState('');
+  const [ quantity, setQuantity ] = useState(1);
+
+  // Functions for the add to cart buttons
+  const onMinusButtonClick = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  }
+
+  const onPlusButtonClick = () => {
+    if(quantity < 99) {
+      setQuantity(quantity + 1);
+    }
+  }
 
   return (
     <>
@@ -70,6 +85,7 @@ export const Product = ({ product }) => {
                 style={{backgroundColor: `${color.code}`, color: `${color.code}`}}
                 className='product-color-btn'
                 title={color.name}
+                onClick={() => {setSelectedVariant(color.name)}}
               >o</button>
             ))
           }
@@ -78,13 +94,31 @@ export const Product = ({ product }) => {
               <button
                 key={size.size}
                 className='product-size-btn'
+                onClick={() => {setSelectedVariant(size.size)}}
               >{size.size}</button>
             ))
           }
+          <span className='d-block fs-5 mt-4'>Variante seleccionada: {selectedVariant ? selectedVariant : 'ninguna'}</span>
+          {/* Add to cart buttons */}
+          <div className="container d-flex justify-content-center mt-4">
+            <button
+              className="cart-quantity-btn"
+              onClick={() => {onMinusButtonClick()}}
+            >
+              <i className="fa-solid fa-minus fs-5"></i>
+            </button>
+            <span className="my-2 mx-3 fs-5">{quantity}</span>
+            <button
+              className="cart-quantity-btn"
+              onClick={() => {onPlusButtonClick()}}
+            >
+              <i className="fa-solid fa-plus fs-5"></i>
+            </button>
+          </div>
           <div className="d-flex justify-content-center mt-4">
             <button
               className='add-to-cart-btn'
-              onClick={() => {addToCart(product)}}
+              onClick={() => {addToCart(product, quantity, selectedVariant)}}
               >Agregar al carrito
             </button>
           </div>

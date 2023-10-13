@@ -28,11 +28,11 @@ export const CartList = () => {
               <tbody>
                 {
                   cart.map((product) => (
-                    <tr key={product._id}>
+                    <tr key={product._id.concat(product.variant)}>
                       <td>
                         <div className="cart-tablecell-container">
                           <img className="cart-img" src={product.image} alt={product.title} />
-                          <span className="cart-text">{product.title}</span>
+                          <span className="cart-text">{product.title} {product.variant ? `- ${product.variant}` : '' }</span>
                         </div>
                       </td>
                       <td className="align-middle cart-text">{formatPrice.format(product.price)}</td>
@@ -40,14 +40,14 @@ export const CartList = () => {
                         <div className="cart-tablecell-container">
                           <button
                             className="cart-quantity-btn"
-                            onClick={() => { removeFromCart(product) }}
+                            onClick={() => { removeFromCart(product, product.variant) }}
                           >
                             <i className="fa-solid fa-minus fs-5"></i>
                           </button>
                           <span className="my-2 mx-3">{product.quantity}</span>
                           <button
                             className="cart-quantity-btn"
-                            onClick={() => { addToCart(product) }}
+                            onClick={() => { addToCart(product, 1, product.variant) }}
                           >
                             <i className="fa-solid fa-plus fs-5"></i>
                           </button>

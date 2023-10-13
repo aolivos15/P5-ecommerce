@@ -11,44 +11,77 @@ export const CartState = ({ children }) => {
     );
 
   // Function to add a product to the cart
-  const addToCart = (product) => {
-    // Check if a copy of the product is already in the cart
-    const isProductInCart = cart.find((cartItem) => cartItem._id === product._id);
+  // const addToCart = (product, quantity, variant) => {
+  //   // Check if a copy of the product variant is already in the cart
+  //   const isProductInCart = cart.find((cartItem) => cartItem._id === product._id && cartItem.variant === variant);
 
-    if (isProductInCart) {
-      setCart(
-        cart.map((cartItem) =>
-          // If the product is in the cart, increase quantity by 1
-          cartItem._id === product._id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem // If product is not in the cart, return the current cart item
-        )
-      );
-    } else { // If the product is not in the cart, add it to the cart
-      setCart([...cart, { ...product, quantity: 1 }]);
+  //   // If the product variant is in the cart
+  //   if (isProductInCart && isProductInCart.variant === variant) {
+  //     setCart(
+  //       cart.map((cartItem) =>
+  //         // If the current cart item is the requested product,
+  //         // increase quantity by the requested number and add variant
+  //         cartItem._id === product._id && cartItem.variant === variant
+  //           ? { ...cartItem, quantity: cartItem.quantity + quantity, variant: variant }
+  //           : cartItem // If it is not, return the current cart item as is
+  //       )
+  //     );
+  //   } else { // If the product is not in the cart, add the requested quantity and variant to the cart
+  //     setCart([...cart, { ...product, quantity: quantity, variant: variant }]);
+  //   }
+  // }
+  const addToCart = (product, quantity, variant) => {
+    const updatedCart = cart.map((cartItem) => {
+      // If current cart item matches product id and variant, increase quantity by requested number
+      if (cartItem._id === product._id && cartItem.variant === variant) {
+        return {
+          ...cartItem,
+          quantity: cartItem.quantity + quantity,
+          //variant: variant,
+        };
+      }
+      return cartItem; // If not, return item as is
+    });
+
+    // Check if there are copies of the requested product variant
+    const isProductInCart = updatedCart.find(
+      (cartItem) => cartItem._id === product._id && cartItem.variant === variant
+    );
+
+    // If there are none, add the requested quantity of the product variant
+    if (!isProductInCart) {
+      updatedCart.push({
+        ...product,
+        quantity: quantity,
+        variant: variant,
+      });
     }
-  }
+
+    setCart(updatedCart);
+  };
+
 
 
   // Function to remove a product from the cart
-  const removeFromCart = (product) => {
-    // Check if the product is already in the cart
-    const isProductInCart = cart.find((cartItem) => cartItem._id == product._id);
+  const removeFromCart = (product, variant) => {
+    const updatedCart = cart.map((cartItem) => {
+      if (cartItem._id === product._id && cartItem.variant === variant) {
+        if (cartItem.quantity > 1) {
+          // If there is more than one copy of the product in the cart, decrease quantity by 1
+          return { ...cartItem, quantity: cartItem.quantity - 1 };
+        } else {
+          // If there is only one copy, remove it from the cart
+          return null;
+        }
+      }
+      return cartItem;
+    });
 
-    if (isProductInCart.quantity == 1) {
-      // If there is one copy of the product in the cart, remove it from the cart
-      setCart(cart.filter((cartItem) => cartItem._id !== product._id));
-    } else {
-      // If there is more than one copy of the product in the cart, decrease quantity by 1
-      setCart(
-        cart.map((cartItem) =>
-          cartItem._id == product._id
-            ? { ...cartItem, quantity: cartItem.quantity - 1 }
-            : cartItem
-        )
-      );
-    }
-  }
+    // Filter out null values (products to be removed)
+    const filteredCart = updatedCart.filter((cartItem) => cartItem !== null);
+
+    setCart(filteredCart);
+  };
 
 
   // Function to clear the cart
