@@ -11,25 +11,6 @@ export const CartState = ({ children }) => {
     );
 
   // Function to add a product to the cart
-  // const addToCart = (product, quantity, variant) => {
-  //   // Check if a copy of the product variant is already in the cart
-  //   const isProductInCart = cart.find((cartItem) => cartItem._id === product._id && cartItem.variant === variant);
-
-  //   // If the product variant is in the cart
-  //   if (isProductInCart && isProductInCart.variant === variant) {
-  //     setCart(
-  //       cart.map((cartItem) =>
-  //         // If the current cart item is the requested product,
-  //         // increase quantity by the requested number and add variant
-  //         cartItem._id === product._id && cartItem.variant === variant
-  //           ? { ...cartItem, quantity: cartItem.quantity + quantity, variant: variant }
-  //           : cartItem // If it is not, return the current cart item as is
-  //       )
-  //     );
-  //   } else { // If the product is not in the cart, add the requested quantity and variant to the cart
-  //     setCart([...cart, { ...product, quantity: quantity, variant: variant }]);
-  //   }
-  // }
   const addToCart = (product, quantity, variant) => {
     const updatedCart = cart.map((cartItem) => {
       // If current cart item matches product id and variant, increase quantity by requested number
@@ -59,7 +40,6 @@ export const CartState = ({ children }) => {
 
     setCart(updatedCart);
   };
-
 
 
   // Function to remove a product from the cart
