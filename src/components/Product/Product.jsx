@@ -51,7 +51,7 @@ export const Product = ({ product }) => {
 
   // Take cart and addToCart function from cart context
   const cartCtx = useContext(CartContext);
-  const { addToCart } = cartCtx;
+  const { addToCart, formatPrice } = cartCtx;
 
   const [ selectedVariant, setSelectedVariant ] = useState('');
   const [ quantity, setQuantity ] = useState(1);
@@ -77,7 +77,7 @@ export const Product = ({ product }) => {
         </div>
         <div className="col-lg-6 ms-5">
           <h1 className='product-title mb-4'>{product.title}</h1>
-          <h2 className="mb-4">${product.price}</h2>
+          <h2 className="mb-4">{formatPrice.format(product.price)}</h2>
           {
             productColors.map(color => (
               <button
