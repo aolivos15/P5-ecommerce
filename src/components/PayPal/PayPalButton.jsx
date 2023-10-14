@@ -1,11 +1,20 @@
 import { PayPalButtons } from "@paypal/react-paypal-js"
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import CartContext from "../../context/CartContext/CartContext";
+import { axiosClient } from "../../config/api";
+import UserContext from "../../context/UserContext/UserContext";
 
-export const PayPalButton = ({invoice, totalValue}) => {
+export const PayPalButton = ({ invoice, totalValue, formData }) => {
 
   const navigate = useNavigate();
+  const userCtx = useContext(UserContext);
+  const { user } = userCtx;
+  const cartCtx = useContext(CartContext);
+  const { clearCart } = cartCtx;
+
   // Alert
   const payPalSwal = withReactContent(Swal.mixin({
     customClass: {
@@ -33,16 +42,16 @@ export const PayPalButton = ({invoice, totalValue}) => {
         // This function is waiting for an order to arrive
         const order = await actions.order?.capture();
         try {
-          payPalSwal.fire({
-            icon: 'success',
-            titleText: 'Pago exitoso'
-            // titleText: `${response.data.message}`
-          }).then((result) => {
-            if (result.isConfirmed) {
-              navigate('/');
-            }
-          });
           console.log(order);
+          // Check if the user exists, preguntar al server
+
+          // If user exists, update
+          // Use id from form and not from context, in case the user exists but is not logged in
+          // const response = await axiosClient.put(`/users/${formData._id}`);
+
+          // If user does not exist, create an order on a guestUsers collection??
+
+          navigate('/order_confirmed');
 
         } catch (error) {
           payPalSwal.fire({

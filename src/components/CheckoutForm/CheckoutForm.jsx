@@ -7,6 +7,7 @@ import { PayPalButton } from "../PayPal/PayPalButton";
 export const CheckoutForm = () => {
 
   const navigate = useNavigate();
+
   const cartCtx = useContext(CartContext);
   const { cart, formatPrice, getNumberOfItemsInCart, getCartTotal } = cartCtx;
 
@@ -21,7 +22,8 @@ export const CheckoutForm = () => {
     city: user.city ? user.city : '',
     state: user.state ? user.state : '',
     country: user.country ? user.country : '',
-    phone: user.phone ? user.phone : ''
+    phone: user.phone ? user.phone : '',
+    order: [...cart]
   });
 
   // When the user is filling the form
@@ -167,7 +169,7 @@ export const CheckoutForm = () => {
             <div className="container d-flex justify-content-center">
               <div className="row w-100">
 
-            <PayPalButton invoice={'compra'} totalValue={getCartTotal()} />
+            <PayPalButton invoice={'compra'} totalValue={getCartTotal()} formData={data} />
               </div>
 
             </div>
