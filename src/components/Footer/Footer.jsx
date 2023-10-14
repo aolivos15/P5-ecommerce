@@ -3,7 +3,7 @@ import './footer.css';
 export const Footer = () => {
   return (
     <>
-      <div className="container-fluid footer fs-6 bg-first mt-auto">
+      <div className="container-fluid footer fs-5 bg-first mt-auto">
         <hr />
         {/* ICONS */}
         <div className="row mx-4">
