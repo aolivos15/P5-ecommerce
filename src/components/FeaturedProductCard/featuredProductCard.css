@@ -1,7 +1,7 @@
 .product-card {
   margin-bottom: 30px;
   border-radius: 20px;
-  max-width: 80%;
+  max-width: 60%;
   background-color: var(--second200);
   padding: 20px;
   margin: auto;
@@ -28,7 +28,7 @@
   border-radius: 30px;
   color: var(--text400);
   font-size: 20px;
-  padding: 10px 30px;
+  padding: 6px 20px;
 }
 
 .card-btn:hover {
