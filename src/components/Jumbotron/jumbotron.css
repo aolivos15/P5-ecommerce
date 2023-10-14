@@ -1,7 +1,21 @@
+.jumbotron-container {
+  background-image: url('../../assets/img/jumbotron_img.jpg');
+  height: 400px;
+  width: auto;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
 .jumbotron-img {
   border-radius: 60px;
   border-top-right-radius: 0%;
   border-bottom-right-radius: 0%;
+}
+
+.mask {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 100%;
+  width: 100%;
 }
 
 .jumbotron-btn {
@@ -26,5 +40,13 @@
 @media (max-width: 1200px) {
   .jumbotron-btn {
     font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .jumbotron-container {
+    background-image: url('../../assets/img/jumbotron_img_480.jpg');
+    height: 400px;
+    background-size: cover;
   }
 }
