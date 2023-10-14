@@ -1,5 +1,5 @@
 .jumbotron-container {
-  background-image: url('../../assets/img/jumbotron_img.jpg');
+  background-image: url('../../assets/img/jumbotron_img.webp');
   height: 400px;
   width: auto;
   background-size: 100% 100%;
@@ -45,7 +45,7 @@
 
 @media (max-width: 480px) {
   .jumbotron-container {
-    background-image: url('../../assets/img/jumbotron_img_480.jpg');
+    background-image: url('../../assets/img/jumbotron_img_480.webp');
     height: 400px;
     background-size: cover;
   }
