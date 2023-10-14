@@ -47,7 +47,7 @@ export const CategoryContainer = ( { category } ) => {
   return (
     <>
       <div className="container">
-        <h1 className="resp-title text-center my-5">{categoryTitle}</h1>
+        <h1 className="resp-title text-center my-5 fw-bold">{categoryTitle}</h1>
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-evenly mb-5">
           {
             products.map(product => (
