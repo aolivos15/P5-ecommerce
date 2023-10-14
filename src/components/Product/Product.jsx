@@ -131,19 +131,25 @@ export const Product = ({ product }) => {
 
       <div className="row mb-5 pb-5">
         <div className="col">
-          <h2 className='mb-4'>Características del producto:</h2>
-          <table className="table table-warning table-striped table-hover product-table">
-            <tbody>
-              {
-                productProperties.map(property => (
-                  <tr key={property.title}>
-                    <td>{property.title}</td>
-                    <td>{property.content}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
+          {
+            product.composition
+            ? <>
+                <h2 className='mb-4'>Características del producto:</h2>
+                <table className="table table-warning table-striped table-hover product-table">
+                  <tbody>
+                    {
+                      productProperties.map(property => (
+                        <tr key={property.title}>
+                          <td>{property.title}</td>
+                          <td>{property.content}</td>
+                        </tr>
+                      ))
+                    }
+                  </tbody>
+                </table>
+              </>
+            : ''
+          }
         </div>
       </div>
     </>
