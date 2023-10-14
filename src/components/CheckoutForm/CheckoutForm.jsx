@@ -1,5 +1,6 @@
 import { useContext, useState } from "react"
 import CartContext from "../../context/CartContext/CartContext";
+import UserContext from "../../context/UserContext/UserContext";
 import { useNavigate } from "react-router-dom";
 import { PayPalButton } from "../PayPal/PayPalButton";
 
@@ -9,14 +10,27 @@ export const CheckoutForm = () => {
   const cartCtx = useContext(CartContext);
   const { cart, formatPrice, getNumberOfItemsInCart, getCartTotal } = cartCtx;
 
-  const [ name, setName ] = useState('');
-  const [ lastName, setLastName ] = useState('');
-  const [ email, setEmail ] = useState('');
-  const [ address, setAddress ] = useState('');
-  const [ address2, setAddress2 ] = useState('');
-  const [ region, setRegion ] = useState('');
-  const [ city, setCity ] = useState('');
+  const userCtx = useContext(UserContext);
+  const { user } = userCtx;
 
+  const [ data, setData ] = useState({
+    name: user.name ? user.name : '',
+    lastname: user.lastname ? user.lastname : '',
+    email: user.email ? user.email : '',
+    address: user.address ? user.address : '',
+    city: user.city ? user.city : '',
+    state: user.state ? user.state : '',
+    country: user.country ? user.country : '',
+    phone: user.phone ? user.phone : ''
+  });
+
+  // When the user is filling the form
+  const onChangeData = (event) => {
+    setData({
+      ...data,
+      [event.target.name]: event.target.value
+    });
+  }
 
   const onEditCartClick = () => {
     navigate('/carrito');
@@ -36,24 +50,24 @@ export const CheckoutForm = () => {
 
               {
                 cart.map((product) => (
-                  <li key={product._id} className="list-group-item d-flex justify-content-between">
-                    <div>
+                  <li key={product._id.concat(product.variant)} className="list-group-item d-flex justify-content-between text-reset">
+                    <div className="me-5">
                       <h6 className="fs-5 mb-0">{product.title}</h6>
-                      <small>Variante</small>
+                      <small>{product.variant}</small>
                     </div>
                     <span>{formatPrice.format(product.price)}</span>
                   </li>
                 ))
               }
 
-              <li className="list-group-item d-flex justify-content-between">
+              <li className="list-group-item d-flex justify-content-between text-reset">
                 <div>
                   <h6 className="fs-5 mb-0">Costo de envío</h6>
                 </div>
                 <span>$3.990</span>
               </li>
 
-              <li className="list-group-item d-flex justify-content-between fw-bold fs-5">
+              <li className="list-group-item d-flex justify-content-between fw-bold fs-5 text-reset">
                 <span>Total</span>
                 <span>{formatPrice.format(getCartTotal())}</span>
               </li>
@@ -71,8 +85,8 @@ export const CheckoutForm = () => {
                   <input
                     type="text"
                     className="form-control"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    value={data.name}
+                    onChange={(e)=>{onChangeData(e)}}
                     required />
                 </div>
 
@@ -81,8 +95,8 @@ export const CheckoutForm = () => {
                   <input
                     type="text"
                     className="form-control"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
+                    value={data.lastname}
+                    onChange={(e)=>{onChangeData(e)}}
                     required />
                 </div>
 
@@ -92,8 +106,8 @@ export const CheckoutForm = () => {
                     type="email"
                     className="form-control"
                     placeholder="nombre@ejemplo.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={data.email}
+                    onChange={(e)=>{onChangeData(e)}}
                     required />
                 </div>
 
@@ -102,30 +116,18 @@ export const CheckoutForm = () => {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Calle y número"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
+                    value={data.address}
+                    onChange={(e)=>{onChangeData(e)}}
                     required />
                 </div>
 
-                <div className="col-12">
-                  <label className="form-label">Dirección 2 <span className="text-muted">(Opcional)</span></label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="N° departamento, bloque, etc."
-                    value={address2}
-                    onChange={(e) => setAddress2(e.target.value)}
-                    />
-                </div>
-
                 <div className="col-md-6">
-                  <label className="form-label">Región</label>
+                  <label className="form-label">Región o estado</label>
                   <input
                     type="text"
                     className="form-control"
-                    value={region}
-                    onChange={(e) => setRegion(e.target.value)}
+                    value={data.state}
+                    onChange={(e)=>{onChangeData(e)}}
                     required />
                 </div>
 
@@ -134,10 +136,31 @@ export const CheckoutForm = () => {
                   <input
                     type="text"
                     className="form-control"
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
+                    value={data.city}
+                    onChange={(e)=>{onChangeData(e)}}
                     required />
                 </div>
+
+                <div className="col-md-6">
+                  <label className="form-label">País</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={data.country}
+                    onChange={(e)=>{onChangeData(e)}}
+                    required />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="form-label">Teléfono</label>
+                  <input
+                    type="phone"
+                    className="form-control"
+                    value={data.phone}
+                    onChange={(e)=>{onChangeData(e)}}
+                    required />
+                </div>
+
               </div>
             </form>
 

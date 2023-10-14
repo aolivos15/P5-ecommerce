@@ -7,23 +7,27 @@ import withReactContent from "sweetalert2-react-content";
 
 export const UserState = ({ children }) => {
 
+  const userFromStorage = localStorage.getItem("user");
+  const parsedUser = JSON.parse(userFromStorage);
+  //console.log(parsedUser);
+
   // Initial global state of user
-  const initialState = {
-    user: {
-      _id: "",
-      name: "",
-      lastname: "",
-      email: "",
-      address: "",
-      city: "",
-      state: "",
-      country: "",
-      phone: "",
-      role: "",
-      orders: []
-    },
-    authStatus: false
-  }
+  const initialState = localStorage.getItem("user") && localStorage.getItem("token")
+    ? { user: parsedUser, authStatus: true }
+    : {
+      user: {
+        _id: "",
+        name: "",
+        lastname: "",
+        email: "",
+        address: "",
+        city: "",
+        state: "",
+        country: "",
+        phone: ""
+      }, authStatus: false
+    }
+
 
   // Manage context state changes
   const [ globalState, dispatch ] = useReducer(reducer, initialState);
@@ -49,7 +53,7 @@ export const UserState = ({ children }) => {
     } catch (error) {
       logInSwal.fire({
         icon: 'error',
-        titleText: "Nombre de usuario o contraseña incorrectos. Por favor, inténtalo de nuevo."
+        titleText: `${error.response.data.message}`
       });
       console.error(error);
     }
