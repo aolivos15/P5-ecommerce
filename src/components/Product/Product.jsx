@@ -98,7 +98,11 @@ export const Product = ({ product }) => {
               >{size.size}</button>
             ))
           }
-          <span className='d-block fs-5 mt-4'>Variante seleccionada: {selectedVariant ? selectedVariant : 'ninguna'}</span>
+          {
+            product.colors || product.sizes
+              ? <span className='d-block fs-5 mt-4'>Variante seleccionada: {selectedVariant ? selectedVariant : 'ninguna'}</span>
+              : ''
+          }
           {/* Add to cart buttons */}
           <div className="container d-flex justify-content-center mt-4">
             <button
