@@ -45,7 +45,7 @@ export const SignUpForm = () => {
         icon: 'success',
         titleText: `${response.data.message}`
       }).then((result) => {
-        // When user clicks on "ok", redirect to patients page
+        // When user clicks on "ok", redirect to log in page
         if (result.isConfirmed) {
           navigate('/login');
         }
