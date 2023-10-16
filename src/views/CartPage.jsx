@@ -1,9 +1,9 @@
-import { CartContainer } from "../components/CartContainer/CartContainer"
+import { CartList } from "../components/CartList/CartList"
 
 export const CartPage = () => {
   return (
     <>
-      <CartContainer />
+      <CartList />
     </>
   )
 }
